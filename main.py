@@ -10,13 +10,13 @@ def main():
 
     unet = models.u2net_2d(
         input_size=(128, 128, 1),
-        filter_4f_num=[64, 128, 256, 512],
+        filter_num=[64, 128, 256, 512],
         n_labels=1
     )
 
     unet_plus = models.u2net_plus_2d(
         input_size=(128, 128, 1),
-        filter_4f_num=[64, 128, 256, 512],
+        filter_num=[64, 128, 256, 512],
         n_labels=1
     )
     
