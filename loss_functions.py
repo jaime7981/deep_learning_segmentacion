@@ -10,6 +10,7 @@ def dice_coef(y_true, y_pred):
     up = (2. * intersection + smooth)
     down = (K.sum(y_true_f) + K.sum(y_pred_f) + smooth)
     dice = up / down
+    return dice
 
 
 def bce_dice_loss(y_true, y_pred):

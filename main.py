@@ -8,13 +8,13 @@ def main():
 
     train_generator, test_generator = load_dataset()
 
-    unet = models.u2net_2d(
+    unet = models.unet_2d(
         input_size=(128, 128, 1),
         filter_num=[64, 128, 256, 512],
         n_labels=1
     )
 
-    unet_plus = models.u2net_plus_2d(
+    unet_plus = models.unet_plus_2d(
         input_size=(128, 128, 1),
         filter_num=[64, 128, 256, 512],
         n_labels=1
