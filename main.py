@@ -1,12 +1,16 @@
 import tensorflow as tf
 from tensorflow.keras import backend as K
-from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.optimizers import Adam, SGD
 from keras_unet_collection import models
 
 import os
 
-NUM_EPOCHS = 32
-BATCH_SIZE = 10
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+tf.config.threading.set_inter_op_parallelism_threads(1)
+tf.config.threading.set_intra_op_parallelism_threads(1)
+
+NUM_EPOCHS = 10
+BATCH_SIZE = 16
 
 BASE_PATH = os.path.dirname(os.path.abspath(__file__))
 DATASET_PATH = os.path.join(BASE_PATH, 'datasets')
@@ -87,7 +91,7 @@ def dice_coef(y_true, y_pred):
 
 def bce_dice_loss(y_true, y_pred):
     celoss = tf.keras.losses.binary_crossentropy(y_true, y_pred)
-    return celoss + dice_coef(y_true, y_pred)
+    return celoss + (1 - dice_coef(y_true, y_pred))
 
 
 def main():
